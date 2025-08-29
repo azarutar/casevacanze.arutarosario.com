@@ -1,0 +1,42 @@
+[
+    {
+        id: 1,
+        name: "Villa dei Tramonti",
+        location: "Marzamemi",
+        price: "€120 - €200 per notte",
+        description: "Splendida villa con vista mare, situata a pochi passi dalla spiaggia. Dispone di 3 camere da letto, 2 bagni, cucina completamente attrezzata e un ampio giardino con patio. La posizione privilegiata offre un facile accesso sia al centro storico che alle spiagge più belle della zona.",
+        features: ["Wi-Fi", "Aria condizionata", "Parcheggio", "Vista mare", "Animali ammessi", "Giardino"],
+        images: [
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "https://images.unsplash.com/photo-1575517111839-3a3843ee7f5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+        ]
+    },
+    {
+        id: 2,
+        name: "Casa del Sole",
+        location: "San Lorenzo",
+        price: "€80 - €150 per notte",
+        description: "Accogliente casa nel cuore di San Lorenzo, a pochi minuti dal centro storico. Dotata di 2 camere da letto, 1 bagno, cucina e un delizioso balcone con vista sul paese. L'arredamento curato nei dettagli e la posizione centrale la rendono perfetta per una vacanza all'insegna del relax e della comodità.",
+        features: ["Wi-Fi", "Vista città", "Balcone", "Cucina attrezzata", "Centrale"],
+        images: [
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "https://images.unsplash.com/photo-1575517111839-3a3843ee7f5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+        ]
+    },
+    {
+        id: 3,
+        name: "Appartamento Mare Blu",
+        location: "Marzamemi",
+        price: "€90 - €160 per notte",
+        description: "Moderno appartamento a due passi dal mare, con accesso diretto alla spiaggia. L'appartamento offre 2 camere, 1 bagno, soggiorno con angolo cottura e terrazzo arredato. La vicinanza al mare e ai servizi lo rende ideale per famiglie e coppie in cerca di una vacanza senza pensieri.",
+        features: ["Wi-Fi", "Aria condizionata", "Accesso alla spiaggia", "Terrazzo", "Vicino al mare"],
+        images: [
+            "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=853&q=80",
+            "https://images.unsplash.com/photo-1600566753052-dc33bd9430d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+        ]
+    }
+]

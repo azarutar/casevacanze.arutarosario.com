@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Vacanze Marzamemi e San Lorenzo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-home"></i>
+            <h1>Case Vacanze Sicilia</h1>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Le Nostre Case</h2>
+            <button class="close-btn" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" placeholder="Cerca per nome...">
+        </div>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <h3>Località</h3>
+                <div class="filter-options">
+                    <button class="active">Tutte</button>
+                    <button>Marzamemi</button>
+                    <button>San Lorenzo</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <h3>Prezzo</h3>
+                <div class="filter-options">
+                    <button>Tutti</button>
+                    <button>Economico</button>
+                    <button>Medio</button>
+                    <button>Lusso</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <h3>Camere</h3>
+                <div class="filter-options">
+                    <button>Tutte</button>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3+</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="properties-list">
+            <div class="property-item" data-id="1">
+                <h3>Villa dei Tramonti</h3>
+                <p>Marzamemi • 6 persone • 3 camere</p>
+                <div class="property-meta">
+                    <span>200€/notte</span>
+                    <span><i class="fas fa-star"></i> 4.9</span>
+                </div>
+            </div>
+            
+            <div class="property-item" data-id="2">
+                <h3>Casa del Mare</h3>
+                <p>San Lorenzo • 4 persone • 2 camere</p>
+                <div class="property-meta">
+                    <span>120€/notte</span>
+                    <span><i class="fas fa-star"></i> 4.7</span>
+                </div>
+            </div>
+            
+            <div class="property-item" data-id="3">
+                <h3>Appartamento La Tonnara</h3>
+                <p>Marzamemi • 2 persone • 1 camera</p>
+                <div class="property-meta">
+                    <span>80€/notte</span>
+                    <span><i class="fas fa-star"></i> 4.8</span>
+                </div>
+            </div>
+            
+            <div class="property-item" data-id="4">
+                <h3>Villa San Lorenzo</h3>
+                <p>San Lorenzo • 8 persone • 4 camere</p>
+                <div class="property-meta">
+                    <span>300€/notte</span>
+                    <span><i class="fas fa-star"></i> 5.0</span>
+                </div>
+            </div>
+            
+            <div class="property-item" data-id="5">
+                <h3>Casa del Pescatore</h3>
+                <p>Marzamemi • 4 persone • 2 camere</p>
+                <div class="property-meta">
+                    <span>110€/notte</span>
+                    <span><i class="fas fa-star"></i> 4.6</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="map-container">
+            <div class="map-content">
+                <h2>Scopri le nostre case vacanze</h2>
+                <p>Tra Marzamemi e San Lorenzo, scegli la tua perfetta vacanza siciliana</p>
+            </div>
+        </div>
+        
+        <div class="properties-grid">
+            <!-- Property 1 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Villa dei Tramonti">
+                </div>
+                <div class="property-details">
+                    <h3>Villa dei Tramonti</h3>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i> Marzamemi
+                    </div>
+                    <div class="property-features">
+                        <span><i class="fas fa-users"></i> 6 persone</span>
+                        <span><i class="fas fa-bed"></i> 3 camere</span>
+                    </div>
+                    <p>Villa con piscina privata e vista mozzafiato sul mare di Marzamemi.</p>
+                    <div class="property-price">200€/notte</div>
+                </div>
+            </div>
+            
+            <!-- Property 2 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Casa del Mare">
+                </div>
+                <div class="property-details">
+                    <h3>Casa del Mare</h3>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i> San Lorenzo
+                    </div>
+                    <div class="property-features">
+                        <span><i class="fas fa-users"></i> 4 persone</span>
+                        <span><i class="fas fa-bed"></i> 2 camere</span>
+                    </div>
+                    <p>Accogliente casa a pochi passi dalla spiaggia, con terrazza panoramica.</p>
+                    <div class="property-price">120€/notte</div>
+                </div>
+            </div>
+            
+            <!-- Property 3 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Appartamento La Tonnara">
+                </div>
+                <div class="property-details">
+                    <h3>Appartamento La Tonnara</h3>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i> Marzamemi
+                    </div>
+                    <div class="property-features">
+                        <span><i class="fas fa-users"></i> 2 persone</span>
+                        <span><i class="fas fa-bed"></i> 1 camera</span>
+                    </div>
+                    <p>Appartamento nel centro storico di Marzamemi, vicino alla famosa tonnara.</p>
+                    <div class="property-price">80€/notte</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contattaci per prenotazioni</h3>
+                <p>Email: info@casevacanzesicilia.it</p>
+                <p>Telefono: +39 0123 456789</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            
+            // Toggle sidebar
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+                mainContent.classList.toggle('shifted');
+            });
+            
+            // Close sidebar
+            closeSidebar.addEventListener('click', function() {
+                sidebar.classList.remove('open');
+                mainContent.classList.remove('shifted');
+            });
+            
+            // Close sidebar when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickInsideMenuToggle = menuToggle.contains(event.target);
+                
+                if (!isClickInsideSidebar && !isClickInsideMenuToggle && sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    mainContent.classList.remove('shifted');
+                }
+            });
+            
+            // Property item click
+            const propertyItems = document.querySelectorAll('.property-item');
+            propertyItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const propertyId = this.getAttribute('data-id');
+                    alert(`Hai selezionato la proprietà con ID: ${propertyId}`);
+                    // Qui potresti implementare lo scroll alla proprietà corrispondente
+                });
+            });
+            
+            // Filter buttons
+            const filterButtons = document.querySelectorAll('.filter-options button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from siblings
+                    const siblings = Array.from(this.parentNode.children);
+                    siblings.forEach(sibling => sibling.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Qui implementeresti il filtro effettivo delle proprietà
+                });
+            });
+        });
+    </script>
+</body>
+</html>

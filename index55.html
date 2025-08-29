@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Vacanze Marzamemi e San Lorenzo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a6fc4 0%, #2c95e3 100%);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+        }
+
+        /* Menu toggle */
+        .menu-toggle {
+            background: white;
+            color: #1a6fc4;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            height: 100%;
+            width: 300px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            transition: left 0.3s ease;
+            z-index: 90;
+            padding: 20px;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar-header h2 {
+            color: #1a6fc4;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-group h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .filter-options button {
+            padding: 5px 10px;
+            background: #f1f1f1;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .filter-options button.active {
+            background: #1a6fc4;
+            color: white;
+        }
+
+        .properties-list {
+            margin-top: 20px;
+        }
+
+        .property-item {
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .property-item:hover {
+            border-color: #1a6fc4;
+            background: #f8f9fa;
+        }
+
+        .property-item h3 {
+            color: #1a6fc4;
+            margin-bottom: 5px;
+        }
+
+        .property-item p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .property-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #1a6fc4;
+            font-weight: bold;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 2rem;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.shifted {
+            margin-left: 300px;
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .map-content h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Properties grid */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.05);
+        }
+
+        .property-details {
+            padding: 1.5rem;
+        }
+
+        .property-details h3 {
+            color: #1a6fc4;
+            margin-bottom: 10px;
+        }
+
+        .property-location {
+            color: #666;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .property-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .property-features span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .property-details p {
+            color: #444;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .property-price {
+            font-weight: bold;
+            color: #1a6fc4;
+            font-size: 1.2rem;
+        }
+
+        /* Property Detail Page */
+        .property-detail-page {
+            display: none;
+            padding: 2rem;
+        }
+
+        .back-button {
+            background: #1a6fc4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .property-detail-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-gallery {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .gallery-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+
+        .gallery-nav button {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .gallery-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .gallery-dot.active {
+            background: white;
+        }
+
+        .property-info {
+            padding: 2rem;
+        }
+
+        .property-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .property-info-header h2 {
+            color: #1a6fc4;
+            font-size: 1.8rem;
+        }
+
+        .property-info-price {
+            font-size: 1.5rem;
+            color: #1a6fc4;
+            font-weight: bold;
+        }
+
+        .property-info-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .property-info-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-feature i {
+            color: #1a6fc4;
+            font-size: 1.2rem;
+        }
+
+        .property-description {
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .booking-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .booking-btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .booking-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .booking-btn.booking-com {
+            background: #003580;
+        }
+
+        .booking-btn.airbnb {
+            background: #FF5A5F;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content.shifted {
+                margin-left: 0;
+            }
+            
+            .sidebar {
+                width: 100%;
+                left: -100%;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .property-info-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .booking-buttons {
+                flex-direction: column;
+            }
+            
+            .booking-btn {
+                width: 100%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-home"></i>
+            <h1>Case Vacanze Sicilia</h1>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i> Menu
+        </button>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Le Nostre Case</h2>
+            <button class="close-btn" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" placeholder="Cerca per nome...">
+        </div>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <h3>Località</h3>
+                <div class="filter-options">
+                    <button class="active">Tutte</button>
+                    <button>Marzamemi</button>
+                    <button>San Lorenzo</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <h3>Prezzo</h3>
+                <div class="filter-options">
+                    <button>Tutti</button>
+                    <button>Economico</button>
+                    <button>Medio</button>
+                    <button>Lusso</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <h3>Camere</h3>
+                <div class="filter-options">
+                    <button>Tutte</button>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3+</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="properties-list">
+            <div class="property-item" data-id="1">
+                <h3>Villa dei Tramonti</h3>
+                <p>Marzamemi • 6 persone • 3 camere</p>
+                <div class="property-meta">
+                    <span>200€/notte</span>
+                    <span><i class="fas fa-star"></i> 4.9</span>
+                </div>
+            </div>
+            
+            <div class="property-item" data-id="2">
+                <h3>Casa del Mare</h3>
+                <p>San Lorenzo • 4 persone • 2 camere</p>
+                <div class="property-meta">
+                    <span>120€/notte</span>
+                    <span><i class="fas fa-star"></i> 4.7</span>
+                </div>
+            </div>
+            
+            <div class="property-item" data-id="3">
+                <h3>Appartamento La Tonnara</h3>
+                <p>Marzamemi • 2 persone • 1 camera</p>
+                <div class="property-meta">
+                    <span>80€/notte</span>
+                    <span><i class="fas fa-star"></i> 4.8</span>
+                </div>
+            </div>
+            
+            <div class="property-item" data-id="4">
+                <h3>Villa San Lorenzo</h3>
+                <p>San Lorenzo • 8 persone • 4 camere</p>
+                <div class="property-meta">
+                    <span>300€/notte</span>
+                    <span><i class="fas fa-star"></i> 5.0</span>
+                </div>
+            </div>
+            
+            <div class="property-item" data-id="5">
+                <h3>Casa del Pescatore</h3>
+                <p>Marzamemi • 4 persone • 2 camere</p>
+                <div class="property-meta">
+                    <span>110€/notte</span>
+                    <span><i class="fas fa-star"></i> 4.6</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content - Lista Proprietà -->
+    <div class="main-content" id="mainContent">
+        <div class="map-container">
+            <div class="map-content">
+                <h2>Scopri le nostre case vacanze</h2>
+                <p>Tra Marzamemi e San Lorenzo, scegli la tua perfetta vacanza siciliana</p>
+            </div>
+        </div>
+        
+        <div class="properties-grid">
+            <!-- Property 1 -->
+            <div class="property-card" data-id="1">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Villa dei Tramonti">
+                </div>
+                <div class="property-details">
+                    <h3>Villa dei Tramonti</h3>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i> Marzamemi
+                    </div>
+                    <div class="property-features">
+                        <span><i class="fas fa-users"></i> 6 persone</span>
+                        <span><i class="fas fa-bed"></i> 3 camere</span>
+                    </div>
+                    <p>Villa con piscina privata e vista mozzafiato sul mare di Marzamemi.</p>
+                    <div class="property-price">200€/notte</div>
+                </div>
+            </div>
+            
+            <!-- Property 2 -->
+            <div class="property-card" data-id="2">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Casa del Mare">
+                </div>
+                <div class="property-details">
+                    <h3>Casa del Mare</h3>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i> San Lorenzo
+                    </div>
+                    <div class="property-features">
+                        <span><i class="fas fa-users"></i> 4 persone</span>
+                        <span><i class="fas fa-bed"></i> 2 camere</span>
+                    </div>
+                    <p>Accogliente casa a pochi passi dalla spiaggia, con terrazza panoramica.</p>
+                    <div class="property-price">120€/notte</div>
+                </div>
+            </div>
+            
+            <!-- Property 3 -->
+            <div class="property-card" data-id="3">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Appartamento La Tonnara">
+                </div>
+                <div class="property-details">
+                    <h3>Appartamento La Tonnara</h3>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i> Marzamemi
+                    </div>
+                    <div class="property-features">
+                        <span><i class="fas fa-users"></i> 2 persone</span>
+                        <span><i class="fas fa-bed"></i> 1 camera</span>
+                    </div>
+                    <p>Appartamento nel centro storico di Marzamemi, vicino alla famosa tonnara.</p>
+                    <div class="property-price">80€/notte</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Property Detail Page -->
+    <div class="property-detail-page" id="propertyDetailPage">
+        <button class="back-button" id="backButton">
+            <i class="fas fa-arrow-left"></i> Torna all'elenco
+        </button>
+        
+        <div class="property-detail-container">
+            <div class="property-gallery">
+                <div class="gallery-slides" id="gallerySlides">
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Villa dei Tramonti">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Villa dei Tramonti">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Villa dei Tramonti">
+                    </div>
+                </div>
+                
+                <div class="gallery-nav">
+                    <button id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+                    <button id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="gallery-dots">
+                    <div class="gallery-dot active"></div>
+                    <div class="gallery-dot"></div>
+                    <div class="gallery-dot"></div>
+                </div>
+            </div>
+            
+            <div class="property-info">
+                <div class="property-info-header">
+                    <h2 id="detailTitle">Villa dei Tramonti</h2>
+                    <div class="property-info-price" id="detailPrice">200€/notte</div>
+                </div>
+                
+                <div class="property-info-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="detailLocation">Marzamemi, Sicilia</span>
+                </div>
+                
+                <div class="property-info-features">
+                    <div class="info-feature">
+                        <i class="fas fa-users"></i>
+                        <span id="detailGuests">6 Ospiti</span>
+                    </div>
+                    <div class="info-feature">
+                        <i class="fas fa-bed"></i>
+                        <span id="detailBedrooms">3 Camere da letto</span>
+                    </div>
+                    <div class="info-feature">
+                        <i class="fas fa-bath"></i>
+                        <span id="detailBathrooms">2 Bagni</span>
+                    </div>
+                    <div class="info-feature">
+                        <i class="fas fa-ruler-combined"></i>
+                        <span id="detailSize">150 m²</span>
+                    </div>
+                </div>
+                
+                <div class="property-description" id="detailDescription">
+                    <p>Questa splendida villa con piscina privata offre una vista mozzafiato sul mare di Marzamemi. Dispone di 3 camere da letto spaziose, 2 bagni moderni, un soggiorno ampio con camino e una cucina completamente attrezzata.</p>
+                    <p>La villa si trova a soli 5 minuti a piedi dalla spiaggia e a 10 minuti dal caratteristico centro storico di Marzamemi, con i suoi ristoranti tipici e bar.</p>
+                    <p>Ideale per famiglie o gruppi di amici che desiderano una vacanza all'insegna del relax e del comfort.</p>
+                </div>
+                
+                <div class="booking-buttons">
+                    <button class="booking-btn booking-com">
+                        <i class="fas fa-calendar-check"></i> Prenota su Booking.com
+                    </button>
+                    <button class="booking-btn airbnb">
+                        <i class="fab fa-airbnb"></i> Prenota su Airbnb
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contattaci per prenotazioni</h3>
+                <p>Email: info@casevacanzesicilia.it</p>
+                <p>Telefono: +39 0123 456789</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const propertyItems = document.querySelectorAll('.property-item');
+            const propertyCards = document.querySelectorAll('.property-card');
+            const propertyDetailPage = document.getElementById('propertyDetailPage');
+            const backButton = document.getElementById('backButton');
+            const gallerySlides = document.getElementById('gallerySlides');
+            const prevSlide = document.getElementById('prevSlide');
+            const nextSlide = document.getElementById('nextSlide');
+            const galleryDots = document.querySelectorAll('.gallery-dot');
+            
+            // Dati delle proprietà (in un caso reale, questi dati potrebbero venire da un database)
+            const propertiesData = {
+                1: {
+                    title: "Villa dei Tramonti",
+                    price: "200€/notte",
+                    location: "Marzamemi, Sicilia",
+                    guests: "6 Ospiti",
+                    bedrooms: "3 Camere da letto",
+                    bathrooms: "2 Bagni",
+                    size: "150 m²",
+                    description: `
+                        <p>Questa splendida villa con piscina privata offre una vista mozzafiato sul mare di Marzamemi. Dispone di 3 camere da letto spaziose, 2 bagni moderni, un soggiorno ampio con camino e una cucina completamente attrezzata.</p>
+                        <p>La villa si trova a soli 5 minuti a piedi dalla spiaggia e a 10 minuti dal caratteristico centro storico di Marzamemi, con i suoi ristoranti tipici e bar.</p>
+                        <p>Ideale per famiglie o gruppi di amici che desiderano una vacanza all'insegna del relax e del comfort.</p>
+                    `,
+                    images: [
+                        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                        "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                    ]
+                },
+                2: {
+                    title: "Casa del Mare",
+                    price: "120€/notte",
+                    location: "San Lorenzo, Sicilia",
+                    guests: "4 Ospiti",
+                    bedrooms: "2 Camere da letto",
+                    bathrooms: "1 Bagno",
+                    size: "90 m²",
+                    description: `
+                        <p>Accogliente casa a pochi passi dalla spiaggia, con terrazza panoramica da cui è possibile ammirare il suggestivo tramonto sul mare.</p>
+                        <p>La casa dispone di 2 camere da letto, 1 bagno, un soggiorno con angolo cottura e una terrazza attrezzata con tavolo e sedie.</p>
+                        <p>La posizione è ideale per chi ama il mare e desidera una vacanza tranquilla e rigenerante.</p>
+                    `,
+                    images: [
+                        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                        "https://images.unsplash.com/photo-1575517111839-3a3843ee7f5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+                        "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                    ]
+                },
+                3: {
+                    title: "Appartamento La Tonnara",
+                    price: "80€/notte",
+                    location: "Marzamemi, Sicilia",
+                    guests: "2 Ospiti",
+                    bedrooms: "1 Camera da letto",
+                    bathrooms: "1 Bagno",
+                    size: "60 m²",
+                    description: `
+                        <p>Appartamento nel centro storico di Marzamemi, a pochi passi dalla famosa tonnara e dalla piazza principale con i suoi caratteristici ristoranti.</p>
+                        <p>L'appartamento è composto da una camera da letto, un bagno, un soggiorno con angolo cottura e un piccolo balcone con vista sul caratteristico borgo marinaro.</p>
+                        <p>Posizione perfetta per chi vuole immergersi nella vita del paese e assaporare l'autentica atmosfera siciliana.</p>
+                    `,
+                    images: [
+                        "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+                        "https://images.unsplash.com/photo-1600566753052-dc33bd9430d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                    ]
+                }
+            };
+            
+            let currentSlide = 0;
+            
+            // Toggle sidebar
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+                mainContent.classList.toggle('shifted');
+            });
+            
+            // Close sidebar
+            closeSidebar.addEventListener('click', function() {
+                sidebar.classList.remove('open');
+                mainContent.classList.remove('shifted');
+            });
+            
+            // Close sidebar when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickInsideMenuToggle = menuToggle.contains(event.target);
+                
+                if (!isClickInsideSidebar && !isClickInsideMenuToggle && sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    mainContent.classList.remove('shifted');
+                }
+            });
+            
+            // Property item click (from sidebar)
+            propertyItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const propertyId = this.getAttribute('data-id');
+                    showPropertyDetail(propertyId);
+                });
+            });
+            
+            // Property card click (from main content)
+            propertyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const propertyId = this.getAttribute('data-id');
+                    showPropertyDetail(propertyId);
+                });
+            });
+            
+            // Back button
+            backButton.addEventListener('click', function() {
+                propertyDetailPage.style.display = 'none';
+                mainContent.style.display = 'block';
+            });
+            
+            // Gallery navigation
+            prevSlide.addEventListener('click', function() {
+                navigateGallery(-1);
+            });
+            
+            nextSlide.addEventListener('click', function() {
+                navigateGallery(1);
+            });
+            
+            // Gallery dots
+            galleryDots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    currentSlide = index;
+                    updateGallery();
+                });
+            });
+            
+            // Show property detail
+            function showPropertyDetail(propertyId) {
+                const property = propertiesData[propertyId];
+                
+                if (property) {
+                    // Update detail page content
+                    document.getElementById('detailTitle').textContent = property.title;
+                    document.getElementById('detailPrice').textContent = property.price;
+                    document.getElementById('detailLocation').textContent = property.location;
+                    document.getElementById('detailGuests').textContent = property.guests;
+                    document.getElementById('detailBedrooms').textContent = property.bedrooms;
+                    document.getElementById('detailBathrooms').textContent = property.bathrooms;
+                    document.getElementById('detailSize').textContent = property.size;
+                    document.getElementById('detailDescription').innerHTML = property.description;
+                    
+                    // Update gallery
+                    gallerySlides.innerHTML = '';
+                    property.images.forEach(image => {
+                        gallerySlides.innerHTML += `
+                            <div class="gallery-slide">
+                                <img src="${image}" alt="${property.title}">
+                            </div>
+                        `;
+                    });
+                    
+                    // Reset gallery dots
+                    const dotsContainer = document.querySelector('.gallery-dots');
+                    dotsContainer.innerHTML = '';
+                    property.images.forEach((_, index) => {
+                        dotsContainer.innerHTML += `<div class="gallery-dot ${index === 0 ? 'active' : ''}"></div>`;
+                    });
+                    
+                    // Reattach event listeners to new dots
+                    const newDots = document.querySelectorAll('.gallery-dot');
+                    newDots.forEach((dot, index) => {
+                        dot.addEventListener('click', function() {
+                            currentSlide = index;
+                            updateGallery();
+                        });
+                    });
+                    
+                    // Reset gallery position
+                    currentSlide = 0;
+                    updateGallery();
+                    
+                    // Show detail page and hide main content
+                    mainContent.style.display = 'none';
+                    propertyDetailPage.style.display = 'block';
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                }
+            }
+            
+            // Navigate gallery
+            function navigateGallery(direction) {
+                const slides = document.querySelectorAll('.gallery-slide');
+                currentSlide += direction;
+                
+                if (currentSlide < 0) {
+                    currentSlide = slides.length - 1;
+                } else if (currentSlide >= slides.length) {
+                    currentSlide = 0;
+                }
+                
+                updateGallery();
+            }
+            
+            // Update gallery
+            function updateGallery() {
+                const slides = document.querySelectorAll('.gallery-slide');
+                const dots = document.querySelectorAll('.gallery-dot');
+                
+                gallerySlides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                dots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Filter buttons
+            const filterButtons = document.querySelectorAll('.filter-options button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from siblings
+                    const siblings = Array.from(this.parentNode.children);
+                    siblings.forEach(sibling => sibling.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Qui implementeresti il filtro effettivo delle proprietà
+                });
+            });
+        });
+    </script>
+</body>
+</html>
