@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"e:/GitHub/casevacanze.arutarosario.com/data\")",
+      "Bash(mkdir -p \"e:/GitHub/casevacanze.arutarosario.com/js\")",
+      "Bash(mkdir -p \"e:/GitHub/casevacanze.arutarosario.com/assets/images\")"
+    ]
+  }
+}

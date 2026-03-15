@@ -1,0 +1,272 @@
+{
+  "site": {
+    "title": "Aruta Immobili",
+    "subtitle": "Immobili in Affitto e Vendita in Calabria"
+  },
+  "owner": {
+    "name": "Rosario Aruta",
+    "role": "Consulente Immobiliare",
+    "bio": "Specializzato nella compravendita e locazione di immobili in Calabria. Con anni di esperienza nel settore, offro un servizio personalizzato e professionale per aiutarti a trovare l'immobile dei tuoi sogni o a valorizzare il tuo patrimonio.",
+    "phone": "+39 000 0000000",
+    "email": "info@arutarosario.com",
+    "whatsapp": "+39 000 0000000",
+    "photo": "assets/images/owner.jpg",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "linkedin": ""
+    }
+  },
+  "properties": [
+    {
+      "id": "001",
+      "type": "villa",
+      "status": "vendita",
+      "featured": true,
+      "title": "Villa con Piscina e Vista Mare",
+      "description": "Splendida villa indipendente su 3 livelli con piscina privata e vista panoramica sul Mar Tirreno. Immersa in un giardino curato di 500 mq, dotata di ogni comfort moderno. Posizione privilegiata a soli 500 metri dal mare cristallino di Tropea.",
+      "price": 280000,
+      "priceUnit": "€",
+      "location": {
+        "address": "Contrada Marinella",
+        "city": "Tropea",
+        "province": "VV",
+        "region": "Calabria",
+        "lat": 38.6762,
+        "lng": 15.8978
+      },
+      "features": {
+        "area": 220,
+        "landArea": 500,
+        "rooms": 7,
+        "bedrooms": 4,
+        "bathrooms": 3,
+        "floors": 3,
+        "parking": true,
+        "garden": true,
+        "pool": true,
+        "seaview": true,
+        "terrace": true,
+        "elevator": false,
+        "airConditioning": true,
+        "heating": true,
+        "furnished": true,
+        "energyClass": "B"
+      },
+      "images": [
+        "assets/images/001/1.jpg",
+        "assets/images/001/2.jpg",
+        "assets/images/001/3.jpg"
+      ],
+      "tags": ["lusso", "piscina", "mare", "vacanze"]
+    },
+    {
+      "id": "002",
+      "type": "casa",
+      "status": "affitto_vacanze",
+      "featured": true,
+      "title": "Casa al Mare a Capo Vaticano",
+      "description": "Deliziosa casa a pochi passi dalla spiaggia di Capo Vaticano, una delle più belle d'Italia. Dispone di ampia veranda con vista mare, giardino privato con barbecue e posto auto. Perfetta per trascorrere le vacanze estive immersi nella natura calabrese.",
+      "price": 1200,
+      "priceUnit": "€/settimana",
+      "location": {
+        "address": "Via Marina",
+        "city": "Ricadi",
+        "province": "VV",
+        "region": "Calabria",
+        "lat": 38.6217,
+        "lng": 15.8458
+      },
+      "features": {
+        "area": 90,
+        "landArea": 200,
+        "rooms": 4,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "floors": 1,
+        "parking": true,
+        "garden": true,
+        "pool": false,
+        "seaview": true,
+        "terrace": true,
+        "elevator": false,
+        "airConditioning": true,
+        "heating": false,
+        "furnished": true,
+        "energyClass": "C"
+      },
+      "images": [
+        "assets/images/002/1.jpg",
+        "assets/images/002/2.jpg"
+      ],
+      "tags": ["mare", "vacanze", "famiglia"]
+    },
+    {
+      "id": "003",
+      "type": "appartamento",
+      "status": "affitto",
+      "featured": false,
+      "title": "Appartamento nel Centro Storico",
+      "description": "Luminoso appartamento al secondo piano in un palazzo storico nel centro di Vibo Valentia. Completamente ristrutturato nel 2022, mantiene charme e carattere originale con tocchi moderni. Vicino a tutti i servizi, scuole e trasporti pubblici.",
+      "price": 450,
+      "priceUnit": "€/mese",
+      "location": {
+        "address": "Via Roma, 15",
+        "city": "Vibo Valentia",
+        "province": "VV",
+        "region": "Calabria",
+        "lat": 38.6749,
+        "lng": 16.1008
+      },
+      "features": {
+        "area": 75,
+        "landArea": 0,
+        "rooms": 3,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "floors": 2,
+        "parking": false,
+        "garden": false,
+        "pool": false,
+        "seaview": false,
+        "terrace": false,
+        "balcony": true,
+        "elevator": true,
+        "airConditioning": true,
+        "heating": true,
+        "furnished": true,
+        "energyClass": "C"
+      },
+      "images": [
+        "assets/images/003/1.jpg",
+        "assets/images/003/2.jpg"
+      ],
+      "tags": ["centro", "storico", "ristrutturato"]
+    },
+    {
+      "id": "004",
+      "type": "terreno",
+      "status": "vendita",
+      "featured": false,
+      "title": "Terreno Edificabile con Vista Panoramica",
+      "description": "Terreno edificabile di 2.500 mq con splendida vista panoramica sulle colline calabresi e sul mare. Ottimo per costruire la villa dei tuoi sogni. Acqua, luce e gas nelle vicinanze. Ottima esposizione solare. Strada comunale asfaltata.",
+      "price": 45000,
+      "priceUnit": "€",
+      "location": {
+        "address": "Contrada Bosco",
+        "city": "Serra San Bruno",
+        "province": "VV",
+        "region": "Calabria",
+        "lat": 38.5710,
+        "lng": 16.3296
+      },
+      "features": {
+        "area": 2500,
+        "landArea": 2500,
+        "rooms": 0,
+        "bedrooms": 0,
+        "bathrooms": 0,
+        "floors": 0,
+        "parking": false,
+        "garden": false,
+        "pool": false,
+        "seaview": false,
+        "terrace": false,
+        "elevator": false,
+        "airConditioning": false,
+        "heating": false,
+        "furnished": false,
+        "buildable": true,
+        "energyClass": "N/A"
+      },
+      "images": [
+        "assets/images/004/1.jpg"
+      ],
+      "tags": ["terreno", "edificabile", "panoramica"]
+    },
+    {
+      "id": "005",
+      "type": "casa",
+      "status": "vendita",
+      "featured": true,
+      "title": "Casale Ristrutturato in Pietra",
+      "description": "Autentico casale calabrese in pietra, completamente ristrutturato mantenendo l'architettura tradizionale. Dotato di ampio giardino, cantina e oliveto privato. Contesto rurale e tranquillo, a soli 15 minuti dal mare e 10 minuti da Pizzo.",
+      "price": 195000,
+      "priceUnit": "€",
+      "location": {
+        "address": "Contrada San Pietro",
+        "city": "Pizzo",
+        "province": "VV",
+        "region": "Calabria",
+        "lat": 38.7310,
+        "lng": 16.1628
+      },
+      "features": {
+        "area": 160,
+        "landArea": 3000,
+        "rooms": 6,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "floors": 2,
+        "parking": true,
+        "garden": true,
+        "pool": false,
+        "seaview": false,
+        "terrace": true,
+        "elevator": false,
+        "airConditioning": false,
+        "heating": true,
+        "furnished": false,
+        "energyClass": "D"
+      },
+      "images": [
+        "assets/images/005/1.jpg",
+        "assets/images/005/2.jpg",
+        "assets/images/005/3.jpg"
+      ],
+      "tags": ["casale", "pietra", "tradizionale", "campagna"]
+    },
+    {
+      "id": "006",
+      "type": "appartamento",
+      "status": "affitto_vacanze",
+      "featured": false,
+      "title": "Attico Vista Mare a Zambrone",
+      "description": "Splendido attico con terrazza panoramica a 360° e vista mozzafiato sul Mar Tirreno. Completamente ristrutturato e arredato con gusto. A 200 metri dalla spiaggia. Disponibile per affitti brevi durante tutto l'anno.",
+      "price": 800,
+      "priceUnit": "€/settimana",
+      "location": {
+        "address": "Via Lungomare, 8",
+        "city": "Zambrone",
+        "province": "VV",
+        "region": "Calabria",
+        "lat": 38.6512,
+        "lng": 15.9714
+      },
+      "features": {
+        "area": 65,
+        "landArea": 0,
+        "rooms": 3,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "floors": 4,
+        "parking": true,
+        "garden": false,
+        "pool": false,
+        "seaview": true,
+        "terrace": true,
+        "balcony": true,
+        "elevator": true,
+        "airConditioning": true,
+        "heating": true,
+        "furnished": true,
+        "energyClass": "B"
+      },
+      "images": [
+        "assets/images/006/1.jpg",
+        "assets/images/006/2.jpg"
+      ],
+      "tags": ["attico", "terrazza", "mare", "vacanze"]
+    }
+  ]
+}

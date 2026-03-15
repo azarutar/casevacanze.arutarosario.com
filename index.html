@@ -1,256 +1,296 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Vacanze Marzamemi e San Lorenzo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aruta Immobili – Case in Affitto e Vendita in Calabria</title>
+  <meta name="description" content="Aruta Immobili – Trova il tuo immobile ideale in Calabria. Ville, case, appartamenti e terreni in vendita e affitto. Consulente immobiliare Rosario Aruta." />
+  <meta name="keywords" content="immobili calabria, case vendita calabria, affitto vacanze tropea, villa tropea, immobiliare vibo valentia" />
+  <meta property="og:title" content="Aruta Immobili – Case in Affitto e Vendita in Calabria" />
+  <meta property="og:description" content="Trova il tuo immobile ideale in Calabria con Rosario Aruta, consulente immobiliare." />
+  <meta property="og:type" content="website" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <i class="fas fa-home"></i>
-            <h1>Case Vacanze Sicilia</h1>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="#hero" class="logo">
+          <div class="logo-icon"><i class="fas fa-house"></i></div>
+          <span class="logo-text">Aruta <strong>Immobili</strong></span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#properties"><i class="fas fa-building"></i> Immobili</a></li>
+          <li><a href="#map"><i class="fas fa-map-location-dot"></i> Mappa</a></li>
+          <li><a href="#about"><i class="fas fa-user"></i> Chi Siamo</a></li>
+          <li><a href="#contact"><i class="fas fa-envelope"></i> Contatti</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" title="Cambia tema" aria-label="Cambia tema">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge fade-in"><i class="fas fa-map-marker-alt"></i> Calabria, Italia</div>
+        <h1 class="fade-in">
+          Trova il tuo<br><span class="accent">Immobile</span> Ideale
+        </h1>
+        <p class="hero-subtitle fade-in">
+          Ville, case, appartamenti e terreni in vendita e affitto.<br>
+          Servizio professionale e personalizzato in tutta la Calabria.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="search-bar fade-in">
+          <div class="search-input-wrap">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="heroSearch" placeholder="Cerca per città, zona o tipo..." autocomplete="off" />
+          </div>
+          <div class="search-selects">
+            <select id="heroType">
+              <option value="">Tutti i tipi</option>
+              <option value="villa">Villa</option>
+              <option value="casa">Casa</option>
+              <option value="appartamento">Appartamento</option>
+              <option value="terreno">Terreno</option>
+            </select>
+            <select id="heroStatus">
+              <option value="">Tutte le offerte</option>
+              <option value="vendita">In Vendita</option>
+              <option value="affitto">In Affitto</option>
+              <option value="affitto_vacanze">Affitto Vacanze</option>
+            </select>
+          </div>
+          <button class="btn-search" onclick="triggerSearch()">
+            <i class="fas fa-search"></i>
+            <span>Cerca</span>
+          </button>
+        </div>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats fade-in" id="heroStats">
+          <div class="stat-item">
+            <span class="stat-number" id="statTotal">6</span>
+            <span class="stat-label">Immobili</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" id="statSale">3</span>
+            <span class="stat-label">In Vendita</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" id="statRent">3</span>
+            <span class="stat-label">In Affitto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <a href="#properties" aria-label="Scorri verso il basso"><i class="fas fa-chevron-down"></i></a>
+    </div>
+  </section>
+
+  <!-- ===== PROPERTIES ===== -->
+  <section class="section" id="properties">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">I Nostri Immobili</span>
+        <h2>Scopri le Nostre <span class="accent">Proposte</span></h2>
+        <p class="section-subtitle">Una selezione esclusiva di immobili in tutta la Calabria</p>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar fade-in" id="filterBar">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Properties Grid -->
+      <div class="properties-grid" id="propertiesGrid">
+        <!-- Populated by JS -->
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Caricamento immobili...</p>
+        </div>
+      </div>
+
+      <!-- No Results -->
+      <div class="no-results hidden" id="noResults">
+        <i class="fas fa-search"></i>
+        <h3>Nessun risultato trovato</h3>
+        <p>Prova a modificare i filtri di ricerca</p>
+        <button class="btn-outline" onclick="resetFilters()">
+          <i class="fas fa-rotate-left"></i> Reimposta filtri
         </button>
-    </header>
+      </div>
+    </div>
+  </section>
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h2>Le Nostre Case</h2>
-            <button class="close-btn" id="closeSidebar">
-                <i class="fas fa-times"></i>
+  <!-- ===== MAP ===== -->
+  <section class="section section-alt" id="map">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Dove Siamo</span>
+        <h2>Esplora sulla <span class="accent">Mappa</span></h2>
+        <p class="section-subtitle">Localizza tutti gli immobili disponibili in Calabria</p>
+      </div>
+      <div class="map-wrapper fade-in">
+        <div id="leafletMap"></div>
+        <div class="map-sidebar" id="mapSidebar">
+          <div class="map-sidebar-header">
+            <i class="fas fa-list"></i>
+            <span>Lista Immobili</span>
+          </div>
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image fade-in">
+          <div class="owner-photo-wrap" id="ownerPhotoWrap">
+            <div class="owner-photo-placeholder">
+              <i class="fas fa-user-tie"></i>
+            </div>
+          </div>
+          <div class="about-image-deco"></div>
+        </div>
+        <div class="about-content fade-in" id="aboutContent">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Contattaci</span>
+        <h2>Siamo a tua <span class="accent">Disposizione</span></h2>
+        <p class="section-subtitle">Contattaci per informazioni su qualsiasi immobile</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info fade-in" id="contactInfo">
+          <!-- Populated by JS -->
+        </div>
+        <div class="contact-form-wrap fade-in">
+          <form id="contactForm" novalidate>
+            <h3 class="form-title"><i class="fas fa-paper-plane"></i> Invia un Messaggio</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="formName">Nome e Cognome *</label>
+                <input type="text" id="formName" name="name" placeholder="Mario Rossi" required />
+              </div>
+              <div class="form-group">
+                <label for="formEmail">Email *</label>
+                <input type="email" id="formEmail" name="email" placeholder="mario@email.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="formSubject">Oggetto</label>
+              <input type="text" id="formSubject" name="subject" placeholder="Richiesta informazioni immobile..." />
+            </div>
+            <div class="form-group">
+              <label for="formMessage">Messaggio *</label>
+              <textarea id="formMessage" name="message" rows="5" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-full">
+              <i class="fas fa-paper-plane"></i>
+              Invia Messaggio
             </button>
+          </form>
         </div>
-        
-        <div class="search-box">
-            <input type="text" placeholder="Cerca per nome...">
-        </div>
-        
-        <div class="filters">
-            <div class="filter-group">
-                <h3>Località</h3>
-                <div class="filter-options">
-                    <button class="active">Tutte</button>
-                    <button>Marzamemi</button>
-                    <button>San Lorenzo</button>
-                </div>
-            </div>
-            
-            <div class="filter-group">
-                <h3>Prezzo</h3>
-                <div class="filter-options">
-                    <button>Tutti</button>
-                    <button>Economico</button>
-                    <button>Medio</button>
-                    <button>Lusso</button>
-                </div>
-            </div>
-            
-            <div class="filter-group">
-                <h3>Camere</h3>
-                <div class="filter-options">
-                    <button>Tutte</button>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3+</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="properties-list">
-            <div class="property-item" data-id="1">
-                <h3>Villa dei Tramonti</h3>
-                <p>Marzamemi • 6 persone • 3 camere</p>
-                <div class="property-meta">
-                    <span>200€/notte</span>
-                    <span><i class="fas fa-star"></i> 4.9</span>
-                </div>
-            </div>
-            
-            <div class="property-item" data-id="2">
-                <h3>Casa del Mare</h3>
-                <p>San Lorenzo • 4 persone • 2 camere</p>
-                <div class="property-meta">
-                    <span>120€/notte</span>
-                    <span><i class="fas fa-star"></i> 4.7</span>
-                </div>
-            </div>
-            
-            <div class="property-item" data-id="3">
-                <h3>Appartamento La Tonnara</h3>
-                <p>Marzamemi • 2 persone • 1 camera</p>
-                <div class="property-meta">
-                    <span>80€/notte</span>
-                    <span><i class="fas fa-star"></i> 4.8</span>
-                </div>
-            </div>
-            
-            <div class="property-item" data-id="4">
-                <h3>Villa San Lorenzo</h3>
-                <p>San Lorenzo • 8 persone • 4 camere</p>
-                <div class="property-meta">
-                    <span>300€/notte</span>
-                    <span><i class="fas fa-star"></i> 5.0</span>
-                </div>
-            </div>
-            
-            <div class="property-item" data-id="5">
-                <h3>Casa del Pescatore</h3>
-                <p>Marzamemi • 4 persone • 2 camere</p>
-                <div class="property-meta">
-                    <span>110€/notte</span>
-                    <span><i class="fas fa-star"></i> 4.6</span>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- Main Content -->
-    <div class="main-content" id="mainContent">
-        <div class="map-container">
-            <div class="map-content">
-                <h2>Scopri le nostre case vacanze</h2>
-                <p>Tra Marzamemi e San Lorenzo, scegli la tua perfetta vacanza siciliana</p>
-            </div>
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div class="footer-col">
+          <div class="footer-logo">
+            <div class="logo-icon logo-icon-sm"><i class="fas fa-house"></i></div>
+            <span>Aruta <strong>Immobili</strong></span>
+          </div>
+          <p class="footer-tagline" id="footerDesc">Immobili in Affitto e Vendita in Calabria</p>
+          <div class="footer-social" id="footerSocial"></div>
         </div>
-        
-        <div class="properties-grid">
-            <!-- Property 1 -->
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Villa dei Tramonti">
-                </div>
-                <div class="property-details">
-                    <h3>Villa dei Tramonti</h3>
-                    <div class="property-location">
-                        <i class="fas fa-map-marker-alt"></i> Marzamemi
-                    </div>
-                    <div class="property-features">
-                        <span><i class="fas fa-users"></i> 6 persone</span>
-                        <span><i class="fas fa-bed"></i> 3 camere</span>
-                    </div>
-                    <p>Villa con piscina privata e vista mozzafiato sul mare di Marzamemi.</p>
-                    <div class="property-price">200€/notte</div>
-                </div>
-            </div>
-            
-            <!-- Property 2 -->
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Casa del Mare">
-                </div>
-                <div class="property-details">
-                    <h3>Casa del Mare</h3>
-                    <div class="property-location">
-                        <i class="fas fa-map-marker-alt"></i> San Lorenzo
-                    </div>
-                    <div class="property-features">
-                        <span><i class="fas fa-users"></i> 4 persone</span>
-                        <span><i class="fas fa-bed"></i> 2 camere</span>
-                    </div>
-                    <p>Accogliente casa a pochi passi dalla spiaggia, con terrazza panoramica.</p>
-                    <div class="property-price">120€/notte</div>
-                </div>
-            </div>
-            
-            <!-- Property 3 -->
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Appartamento La Tonnara">
-                </div>
-                <div class="property-details">
-                    <h3>Appartamento La Tonnara</h3>
-                    <div class="property-location">
-                        <i class="fas fa-map-marker-alt"></i> Marzamemi
-                    </div>
-                    <div class="property-features">
-                        <span><i class="fas fa-users"></i> 2 persone</span>
-                        <span><i class="fas fa-bed"></i> 1 camera</span>
-                    </div>
-                    <p>Appartamento nel centro storico di Marzamemi, vicino alla famosa tonnara.</p>
-                    <div class="property-price">80€/notte</div>
-                </div>
-            </div>
+
+        <!-- Nav Links -->
+        <div class="footer-col">
+          <h4>Link Utili</h4>
+          <ul class="footer-links">
+            <li><a href="#properties"><i class="fas fa-chevron-right"></i> Immobili</a></li>
+            <li><a href="#map"><i class="fas fa-chevron-right"></i> Mappa</a></li>
+            <li><a href="#about"><i class="fas fa-chevron-right"></i> Chi Siamo</a></li>
+            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contatti</a></li>
+          </ul>
         </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h4>Contatti</h4>
+          <ul class="footer-contact" id="footerContact">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear"></span> Aruta Immobili. Tutti i diritti riservati.</p>
+        <p class="footer-credits">Rosario Aruta – Consulente Immobiliare</p>
+      </div>
     </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <h3>Contattaci per prenotazioni</h3>
-                <p>Email: info@casevacanzesicilia.it</p>
-                <p>Telefono: +39 0123 456789</p>
-            </div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </footer>
+  <!-- ===== MODAL ===== -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Chiudi">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body" id="modalBody">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menuToggle');
-            const closeSidebar = document.getElementById('closeSidebar');
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.getElementById('mainContent');
-            
-            // Toggle sidebar
-            menuToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('open');
-                mainContent.classList.toggle('shifted');
-            });
-            
-            // Close sidebar
-            closeSidebar.addEventListener('click', function() {
-                sidebar.classList.remove('open');
-                mainContent.classList.remove('shifted');
-            });
-            
-            // Close sidebar when clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInsideSidebar = sidebar.contains(event.target);
-                const isClickInsideMenuToggle = menuToggle.contains(event.target);
-                
-                if (!isClickInsideSidebar && !isClickInsideMenuToggle && sidebar.classList.contains('open')) {
-                    sidebar.classList.remove('open');
-                    mainContent.classList.remove('shifted');
-                }
-            });
-            
-            // Property item click
-            const propertyItems = document.querySelectorAll('.property-item');
-            propertyItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const propertyId = this.getAttribute('data-id');
-                    alert(`Hai selezionato la proprietà con ID: ${propertyId}`);
-                    // Qui potresti implementare lo scroll alla proprietà corrispondente
-                });
-            });
-            
-            // Filter buttons
-            const filterButtons = document.querySelectorAll('.filter-options button');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from siblings
-                    const siblings = Array.from(this.parentNode.children);
-                    siblings.forEach(sibling => sibling.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Qui implementeresti il filtro effettivo delle proprietà
-                });
-            });
-        });
-    </script>
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
