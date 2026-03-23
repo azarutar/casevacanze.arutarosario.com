@@ -87,7 +87,7 @@ function activateLiteMode(data) {
   const heroH1 = document.querySelector('.hero h1');
   if (heroH1) heroH1.innerHTML = `Le Mie <span class="accent">Proprietà</span>`;
   const heroSub = document.querySelector('.hero-subtitle');
-  if (heroSub) heroSub.innerHTML = `Immobili gestiti direttamente dal proprietario in Calabria`;
+  if (heroSub) heroSub.innerHTML = `Immobili gestiti direttamente dal proprietario in Sicilia`;
 
   // Hide filter bar, simplify properties header
   const filterBar = document.getElementById('filterBar');
@@ -863,7 +863,7 @@ function renderContact(owner) {
       <div class="contact-item-icon location"><i class="fas fa-map-marker-alt"></i></div>
       <div class="contact-item-text">
         <strong>Zona di Operatività</strong>
-        <span>Calabria, Provincia di Vibo Valentia</span>
+        <span>Sicilia, Provincia di Vibo Valentia</span>
       </div>
     </div>
   `;
@@ -873,7 +873,7 @@ function renderFooter(owner) {
   if (!owner) return;
 
   const footerDesc = document.getElementById('footerDesc');
-  if (footerDesc) footerDesc.textContent = siteData.site?.subtitle || 'Immobili in Affitto e Vendita in Calabria';
+  if (footerDesc) footerDesc.textContent = siteData.site?.subtitle || 'Immobili in Affitto e Vendita in Sicilia';
 
   const footerContact = document.getElementById('footerContact');
   if (footerContact) {
@@ -900,7 +900,7 @@ function renderFooter(owner) {
       ` : ''}
       <li>
         <i class="fas fa-map-marker-alt"></i>
-        <span>Calabria, Italia</span>
+        <span>Sicilia, Italia</span>
       </li>
     `;
   }

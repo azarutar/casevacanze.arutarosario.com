@@ -1,13 +1,13 @@
 {
   "site": {
     "title": "Aruta Immobili",
-    "subtitle": "Immobili di Proprietà in Calabria",
+    "subtitle": "Immobili di Proprietà a Marzamemi/San Lorenzo",
     "liteMode": true
   },
   "owner": {
     "name": "Rosario Aruta",
     "role": "Proprietario",
-    "bio": "Gestisco direttamente i miei immobili in Calabria, nella provincia di Vibo Valentia. Nessun intermediario: tratti direttamente con il proprietario per affitti vacanze, vendite e informazioni. Disponibilità, trasparenza e contatto diretto sono i miei punti di forza.",
+    "bio": "Gestisco direttamente i miei immobili in Sicilia, nella provincia di Vibo Valentia. Nessun intermediario: tratti direttamente con il proprietario per affitti vacanze, vendite e informazioni. Disponibilità, trasparenza e contatto diretto sono i miei punti di forza.",
     "phone": "+39 000 0000000",
     "email": "info@arutarosario.com",
     "whatsapp": "+39 000 0000000",
@@ -32,7 +32,7 @@
         "address": "Contrada Marinella",
         "city": "Tropea",
         "province": "VV",
-        "region": "Calabria",
+        "region": "Sicilia",
         "lat": 38.6762,
         "lng": 15.8978
       },
@@ -74,7 +74,7 @@
         "address": "Via Marina",
         "city": "Ricadi",
         "province": "VV",
-        "region": "Calabria",
+        "region": "Sicilia",
         "lat": 38.6217,
         "lng": 15.8458
       },
@@ -115,7 +115,7 @@
         "address": "Via Roma, 15",
         "city": "Vibo Valentia",
         "province": "VV",
-        "region": "Calabria",
+        "region": "Sicilia",
         "lat": 38.6749,
         "lng": 16.1008
       },
@@ -157,7 +157,7 @@
         "address": "Contrada Bosco",
         "city": "Serra San Bruno",
         "province": "VV",
-        "region": "Calabria",
+        "region": "Sicilia",
         "lat": 38.5710,
         "lng": 16.3296
       },
@@ -198,7 +198,7 @@
         "address": "Contrada San Pietro",
         "city": "Pizzo",
         "province": "VV",
-        "region": "Calabria",
+        "region": "Sicilia",
         "lat": 38.7310,
         "lng": 16.1628
       },
@@ -240,7 +240,7 @@
         "address": "Via Lungomare, 8",
         "city": "Zambrone",
         "province": "VV",
-        "region": "Calabria",
+        "region": "Sicilia",
         "lat": 38.6512,
         "lng": 15.9714
       },
