@@ -816,15 +816,34 @@ textarea {
   margin-bottom: 24px;
 }
 
-/* ========== MAP ========== */
+/* ========== MAP (Full Screen) ========== */
+.map-section-fullscreen {
+  height: calc(100vh - 70px);
+  padding: 0 !important;
+}
+
+.map-section-fullscreen .container {
+  max-width: 100%;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-section-fullscreen .section-header {
+  padding: 1.2rem 2rem 0.8rem;
+  margin-bottom: 0;
+}
+
 .map-wrapper {
   display: flex;
-  gap: 20px;
-  height: 520px;
-  border-radius: var(--radius);
+  gap: 0;
+  flex: 1;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border);
+  box-shadow: none;
+  border: none;
+  border-top: 1px solid var(--border);
 }
 
 #leafletMap {
@@ -835,7 +854,7 @@ textarea {
 }
 
 .map-sidebar {
-  width: 300px;
+  width: 320px;
   background: var(--bg-card);
   display: flex;
   flex-direction: column;
@@ -1917,14 +1936,19 @@ textarea {
   }
 
   /* Map */
+  .map-section-fullscreen {
+    height: auto;
+    min-height: 100vh;
+  }
+
   .map-wrapper {
     flex-direction: column;
     height: auto;
   }
 
   #leafletMap {
-    height: 380px;
-    border-radius: var(--radius) var(--radius) 0 0;
+    height: 50vh;
+    border-radius: 0;
   }
 
   .map-sidebar {

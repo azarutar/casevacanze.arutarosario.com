@@ -698,7 +698,7 @@ function renderAbout(owner) {
 
   content.innerHTML = `
     <span class="section-tag">Chi Sono</span>
-    <h2>Il Tuo <span class="accent">Consulente</span> di Fiducia</h2>
+    <h2>Direttamente dal <span class="accent">Proprietario</span></h2>
 
     <div class="about-name">
       <div class="about-name-icon">
@@ -726,8 +726,8 @@ function renderAbout(owner) {
         <span class="lbl">In Affitto</span>
       </div>
       <div class="about-stat">
-        <span class="num">100%</span>
-        <span class="lbl">Professionali</span>
+        <span class="num">0%</span>
+        <span class="lbl">Intermediari</span>
       </div>
     </div>
 
@@ -761,7 +761,7 @@ function renderContact(owner) {
   info.innerHTML = `
     <h3>Mettiti in Contatto</h3>
     <p style="color:var(--text-muted);font-size:15px;line-height:1.7;margin-bottom:8px">
-      Hai trovato un immobile di tuo interesse? Contattami per avere maggiori informazioni o per fissare una visita.
+      Tratti direttamente con il proprietario, senza intermediari. Contattami per informazioni o per fissare una visita.
     </p>
 
     ${owner.phone ? `
