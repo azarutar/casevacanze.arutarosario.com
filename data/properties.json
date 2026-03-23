@@ -1,7 +1,8 @@
 {
   "site": {
     "title": "Aruta Immobili",
-    "subtitle": "Immobili di Proprietà in Calabria"
+    "subtitle": "Immobili di Proprietà in Calabria",
+    "liteMode": true
   },
   "owner": {
     "name": "Rosario Aruta",

@@ -34,13 +34,13 @@ async function loadData() {
     siteData = data;
     allProperties = data.properties || [];
 
-    renderHeroStats(allProperties);
-    renderFilterBar(allProperties);
-    renderProperties(allProperties);
-    initMap(allProperties);
-    renderAbout(data.owner);
-    renderContact(data.owner);
-    renderFooter(data.owner);
+    const isLite = data.site?.liteMode === true;
+
+    if (isLite) {
+      activateLiteMode(data);
+    } else {
+      activateFullMode(data);
+    }
 
     // Animate hero elements
     document.querySelectorAll('.hero .fade-in').forEach((el, i) => {
@@ -51,6 +51,71 @@ async function loadData() {
     document.getElementById('propertiesGrid').innerHTML =
       '<div class="loading-spinner"><p style="color:var(--text-muted)">Errore nel caricamento degli immobili. Riprova più tardi.</p></div>';
   }
+}
+
+// ===== FULL MODE (default) =====
+function activateFullMode(data) {
+  renderHeroStats(allProperties);
+  renderFilterBar(allProperties);
+  renderProperties(allProperties);
+  initMap(allProperties);
+  renderAbout(data.owner);
+  renderContact(data.owner);
+  renderFooter(data.owner);
+}
+
+// ===== LITE MODE =====
+function activateLiteMode(data) {
+  document.body.classList.add('lite-mode');
+
+  // Hide heavy sections
+  const hideIds = ['map', 'about'];
+  hideIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  // Hide hero search bar, stats, scroll hint
+  const heroSearch = document.querySelector('.search-bar');
+  const heroStats = document.getElementById('heroStats');
+  const heroScroll = document.querySelector('.hero-scroll-hint');
+  if (heroSearch) heroSearch.style.display = 'none';
+  if (heroStats) heroStats.style.display = 'none';
+  if (heroScroll) heroScroll.style.display = 'none';
+
+  // Simplify hero text
+  const heroH1 = document.querySelector('.hero h1');
+  if (heroH1) heroH1.innerHTML = `Le Mie <span class="accent">Proprietà</span>`;
+  const heroSub = document.querySelector('.hero-subtitle');
+  if (heroSub) heroSub.innerHTML = `Immobili gestiti direttamente dal proprietario in Calabria`;
+
+  // Hide filter bar, simplify properties header
+  const filterBar = document.getElementById('filterBar');
+  if (filterBar) filterBar.style.display = 'none';
+  const propHeader = document.querySelector('#properties .section-header');
+  if (propHeader) propHeader.style.display = 'none';
+
+  // Render property cards (no filter)
+  renderProperties(allProperties);
+
+  // Render contact + footer
+  renderContact(data.owner);
+  renderFooter(data.owner);
+
+  // Simplify navbar: only Immobili + Contatti
+  const navLinks = document.getElementById('navLinks');
+  if (navLinks) {
+    navLinks.innerHTML = `
+      <li><a href="#properties"><i class="fas fa-building"></i> Immobili</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> Contatti</a></li>
+    `;
+  }
+
+  // Simplify footer: hide contact col + link utili, keep only brand + copyright
+  const footerContactCol = document.querySelector('.footer-col:last-child');
+  if (footerContactCol) footerContactCol.style.display = 'none';
+  const footerLinksCol = document.querySelector('.footer-col:nth-child(2)');
+  if (footerLinksCol) footerLinksCol.style.display = 'none';
 }
 
 // ===== HERO STATS =====

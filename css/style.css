@@ -2063,6 +2063,56 @@ textarea {
   }
 }
 
+/* ========== LITE MODE ========== */
+.lite-mode .hero {
+  display: none;
+}
+
+.lite-mode #properties {
+  padding-top: 90px;
+}
+
+.lite-mode .properties-grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.lite-mode #contact {
+  padding-top: 40px;
+}
+
+.lite-mode .footer {
+  padding: 0;
+}
+
+.lite-mode .footer-grid {
+  display: none;
+}
+
+.lite-mode .footer-bottom {
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 14px 0;
+  font-size: 12px;
+  gap: 6px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .lite-mode #properties {
+    padding-top: 80px;
+  }
+
+  .lite-mode .properties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lite-mode .footer-bottom {
+    padding: 12px 0;
+  }
+}
+
 /* ========== SCROLLBAR ========== */
 ::-webkit-scrollbar {
   width: 6px;
